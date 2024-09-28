@@ -168,6 +168,7 @@ local icons = {
     volume_over = "{\\p1}m 0 0 m 24 24 m 3 9 l 3 15 l 7 15 l 12 20 l 12 4 l 7 9 l 3 9 m 16 6 l 18 6 l 18 14 l 16 14 m 16 16 l 18 16 l 18 18 l 16 18{\\p0}",
     volume_mute = "{\\p1}m 0 0 m 24 24 m 16.5 12 b 16.5 10.23 15.48 8.71 14 7.97 l 14 10.18 l 16.45 12.63 b 16.48 12.43 16.5 12.22 16.5 12 m 19 12 b 19 12.94 18.8 13.82 18.46 14.64 l 19.97 16.15 b 20.63 14.91 21 13.5 21 12 b 21 7.72 18.01 4.14 14 3.23 l 14 5.29 b 16.89 6.15 19 8.83 19 12 m 4.27 3 l 3 4.27 l 7.73 9 l 3 9 l 3 15 l 7 15 l 12 20 l 12 13.27 l 16.25 17.52 b 15.58 18.04 14.83 18.45 14 18.7 l 14 20.76 b 15.38 20.45 16.63 19.81 17.69 18.95 l 19.73 21 l 21 19.73 l 12 10.73 l 4.27 3 m 12 4 l 9.91 6.09 l 12 8.18 l 12 4{\\p0}",
     ontop = "{\\p1}m 0 0 m 24 24 m 16 9 l 16 4 l 17 4 b 17.6 4 18 3.5 18 3 b 18 2.5 17.6 2 17 2 l 7 2 b 6.5 2 6 2.5 6 3 b 6 3.5 6.5 4 7 4 l 8 4 l 8 9 b 8 10.7 6.7 12 5 12 l 5 14 l 11 14 l 11 21 l 12 22 l 13 21 l 13 14 l 19 14 l 19 12 b 17.3 12 16 10.7 16 9 {\\p0}",
+--ontop = "{\\p6}m 0 -960 m 960 960 m 624 -480 l 720 -384 l 720 -312 l 516 -312 l 516 -84 l 480 -48 l 444 -84 l 444 -312 l 240 -312 l 240 -384 l 336 -480 l 336 -744 l 288 -744 l 288 -816 l 672 -816 l 672 -744 l 624 -744 l 624 -480 {\\p0}",
 }
 
 local thumbfast = {
@@ -770,7 +771,7 @@ function render_elements(master_ass)
                     local ty
 
                     if (an == 2) then
-                        ty = element.hitbox.y1 - 4
+                        ty = element.hitbox.y1 + 4
                     else
                         ty = element.hitbox.y1 + elem_geo.h/2
                     end
@@ -1143,9 +1144,9 @@ function window_controls()
 
     local button_y = wc_geo.y - (wc_geo.h / 2)
     local first_geo =
-        {x = controlbox_left + 27, y = button_y - 6, an = 5, w = 40, h = wc_geo.h}
+        {x = controlbox_left + 12, y = button_y - 6, an = 5, w = 40, h = wc_geo.h}
     local second_geo =
-        {x = controlbox_left + 69, y = button_y, an = 5, w = 40, h = wc_geo.h}
+        {x = controlbox_left + 65, y = button_y, an = 5, w = 40, h = wc_geo.h}
     local third_geo =
         {x = controlbox_left + 115, y = button_y, an = 5, w = 40, h = wc_geo.h}
 
@@ -1247,7 +1248,7 @@ function layouts()
         y = osc_param.playresy,
         an = 1,
         w = osc_param.playresx,
-        h = 72,
+        h = 80,
     }
 
     local refX = osc_geo.w / 2
@@ -1255,7 +1256,7 @@ function layouts()
 
     local btnY = refY - 28
     local btnW = 40
-    local btnH = 56
+    local btnH = 36
     local tcW = osc_geo.w - 520
 
     osc_param.areas = {} -- delete areas
@@ -1288,7 +1289,7 @@ function layouts()
 
     -- Seekbar
     lo = add_layout("seekbar")
-    lo.geometry = {x = refX, y = refY - 64, an = 5, w = osc_geo.w - 40, h = 16}
+    lo.geometry = {x = refX, y = refY - 64, an = 5, w = osc_geo.w - 40, h = 32}
     lo.style = osc_styles.seekbar_fg
     lo.slider.gap = 7
     lo.slider.pad = 0
@@ -1379,7 +1380,7 @@ function layouts()
 	lo.alpha[1] = 51
 
     lo = add_layout("ontop")
-    lo.geometry = {x = osc_geo.w - 188, y = btnY, an = 5, w = btnW, h = btnH}
+    lo.geometry = {x = osc_geo.w - 188, y = btnY + 2, an = 5, w = btnW, h = btnH}
     lo.style = osc_styles.button
 	lo.alpha[1] = 51
 end
